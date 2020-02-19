@@ -9,7 +9,9 @@ import {
   ProductTitle,
   ProductPrice,
   AddButton,
+  ProductAmount,
   ButtonIcon,
+  ButtonCount,
   ButtonText,
 } from './styles';
 
@@ -42,7 +44,10 @@ export default class Home extends Component {
               <ProductTitle>{item.title}</ProductTitle>
               <ProductPrice>{item.price}</ProductPrice>
               <AddButton>
-                <ButtonIcon />
+                <ProductAmount>
+                  <ButtonIcon />
+                  <ButtonCount>1</ButtonCount>
+                </ProductAmount>
                 <ButtonText>ADICIONAR</ButtonText>
               </AddButton>
             </ProductBox>
