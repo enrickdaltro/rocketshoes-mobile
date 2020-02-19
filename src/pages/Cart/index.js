@@ -1,6 +1,7 @@
 import React from 'react';
-import {View} from 'react-native';
 
-export default function Cart() {
-  return <View />;
+import {Container, Button} from './styles';
+
+export default function Cart({navigation}) {
+  return <Container></Container>;
 }
