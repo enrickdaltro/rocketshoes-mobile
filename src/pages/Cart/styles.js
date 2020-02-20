@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import deleteCan from '../../assets/images/delete_forever_black_24x24.png';
 import addCircle from '../../assets/images/add_circle_outline_black_18x18.png';
 import removeCircle from '../../assets/images/remove_circle_outline_black_18x18.png';
+import emptyCart from '../../assets/images/remove_shopping_cart_black_72x72.png';
 
 export const ProductContainer = styled.View`
   flex: 1;
@@ -114,6 +115,39 @@ export const OrderButton = styled.TouchableOpacity`
 `;
 
 export const OrderText = styled.Text`
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+`;
+
+export const EmptyCart = styled.View`
+  padding: 10px;
+  background: #fff;
+  border-radius: 4px;
+  margin: 15px;
+`;
+export const EmptyIcon = styled.Image.attrs({
+  source: emptyCart,
+})`
+  align-self: center;
+`;
+export const EmptyText = styled.Text`
+  font-size: 22px;
+  font-weight: bold;
+  align-self: center;
+  margin-top: 10px;
+`;
+
+export const OrderButtonEmpty = styled.TouchableOpacity`
+  background: #7159c1;
+  padding: 14px;
+  border-radius: 4px;
+  margin: 0px 10px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+`;
+export const OrderTextEmpty = styled.Text`
   color: #fff;
   font-weight: bold;
   font-size: 14px;
