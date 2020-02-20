@@ -83,7 +83,7 @@ function Cart({navigation, cart, total, removeFromCart, updateAmountRequest}) {
       ) : (
         <EmptyCart>
           <EmptyIcon />
-          <EmptyText>Seu Carrinho está vazio</EmptyText>
+          <EmptyText>Seu Carrinho está vazio!</EmptyText>
           <OrderButtonEmpty onPress={() => navigation.navigate('Home')}>
             <OrderTextEmpty>VOLTAR PARA COMPRAS</OrderTextEmpty>
           </OrderButtonEmpty>
