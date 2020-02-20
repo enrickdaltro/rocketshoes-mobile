@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import {
   Wrapper,
@@ -10,7 +11,7 @@ import {
   ItemCount,
 } from './styles';
 
-export default function Header({navigation}) {
+function Header({navigation, cartSize}) {
   return (
     <Wrapper>
       <Container>
@@ -18,10 +19,16 @@ export default function Header({navigation}) {
         <BasketView onPress={() => navigation.navigate('Cart')}>
           <BasketIcon />
           <NumberCount>
-            <ItemCount>1</ItemCount>
+            <ItemCount>{cartSize}</ItemCount>
           </NumberCount>
         </BasketView>
       </Container>
     </Wrapper>
   );
 }
+
+const mapStateToProps = state => ({
+  cartSize: state.cart.length,
+});
+
+export default connect(mapStateToProps)(Header);

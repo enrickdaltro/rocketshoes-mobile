@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {FlatList} from 'react-native';
 import {formatPrice} from '../../util/format';
 import api from '../../services/api';
@@ -16,7 +17,7 @@ import {
   ButtonText,
 } from './styles';
 
-export default class Home extends Component {
+class Home extends Component {
   state = {
     products: [],
   };
@@ -35,6 +36,16 @@ export default class Home extends Component {
 
     this.setState({products: data});
   }
+
+  handleAddProduct = product => {
+    const {dispatch} = this.props;
+
+    dispatch({
+      type: 'ADD_TO_CART',
+      product,
+    });
+  };
+
   render() {
     const {products} = this.state;
 
@@ -49,7 +60,7 @@ export default class Home extends Component {
               <ProductImage source={{uri: item.image}} />
               <ProductTitle>{item.title}</ProductTitle>
               <ProductPrice>{item.priceFormatted}</ProductPrice>
-              <AddButton>
+              <AddButton onPress={() => this.handleAddProduct(item)}>
                 <ProductAmount>
                   <ButtonIcon />
                   <ButtonCount>1</ButtonCount>
@@ -63,3 +74,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default connect()(Home);
