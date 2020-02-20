@@ -48,6 +48,7 @@ class Home extends Component {
 
   render() {
     const {products} = this.state;
+    const {amount} = this.props;
 
     return (
       <FlatList
@@ -63,7 +64,7 @@ class Home extends Component {
               <AddButton onPress={() => this.handleAddProduct(item)}>
                 <ProductAmount>
                   <ButtonIcon />
-                  <ButtonCount>1</ButtonCount>
+                  <ButtonCount>{amount[item.id] || 0}</ButtonCount>
                 </ProductAmount>
                 <ButtonText>ADICIONAR</ButtonText>
               </AddButton>
@@ -75,7 +76,15 @@ class Home extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  amount: state.cart.reduce((amount, product) => {
+    amount[product.id] = product.amount;
+
+    return amount;
+  }, {}),
+});
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators(CartActions, dispatch);
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
