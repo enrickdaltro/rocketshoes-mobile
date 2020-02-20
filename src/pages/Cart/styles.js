@@ -38,6 +38,8 @@ export const ProductPrice = styled.Text`
   margin-top: 5px;
 `;
 
+export const DeleteBox = styled.TouchableOpacity``;
+
 export const DeleteProduct = styled.Image.attrs({
   source: deleteCan,
 })`

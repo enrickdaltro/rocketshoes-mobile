@@ -9,6 +9,7 @@ import {
   ProductImage,
   ProductTitle,
   ProductPrice,
+  DeleteBox,
   DeleteProduct,
   ProductDetail,
   DecrementButton,
@@ -22,7 +23,7 @@ import {
   OrderText,
 } from './styles';
 
-function Cart({navigation, cart}) {
+function Cart({navigation, cart, dispatch}) {
   return (
     <ProductContainer>
       <ProductList>
@@ -34,7 +35,12 @@ function Cart({navigation, cart}) {
                 <ProductTitle>{product.title}</ProductTitle>
                 <ProductPrice>{product.priceFormatted}</ProductPrice>
               </ProductInfo>
-              <DeleteProduct />
+              <DeleteBox
+                onPress={() =>
+                  dispatch({type: 'REMOVE_FROM_CART', id: product.id})
+                }>
+                <DeleteProduct />
+              </DeleteBox>
             </ProductHeader>
 
             <ProductDetail>
