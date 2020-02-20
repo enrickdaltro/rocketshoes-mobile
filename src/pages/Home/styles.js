@@ -37,7 +37,7 @@ export const ProductPrice = styled.Text`
   margin-left: 5px;
   margin-top: 5px;
 `;
-export const AddButton = styled.View`
+export const AddButton = styled.TouchableOpacity`
   background: #7159c1;
   flex-direction: row;
   align-items: center;
