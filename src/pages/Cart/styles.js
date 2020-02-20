@@ -53,12 +53,16 @@ export const ProductDetail = styled.View`
   height: 40px;
   border-radius: 4px;
 `;
+
+export const Decrement = styled.TouchableOpacity``;
+
 export const DecrementButton = styled.Image.attrs({
   source: removeCircle,
 })`
   margin-left: 10px;
   margin-top: 11px;
 `;
+
 export const InputAmount = styled.TextInput.attrs({
   readonly: true,
 })`
@@ -70,6 +74,9 @@ export const InputAmount = styled.TextInput.attrs({
   min-width: 52px;
   padding: 5px;
 `;
+
+export const Increment = styled.TouchableOpacity``;
+
 export const IncrementButton = styled.Image.attrs({
   source: addCircle,
 })`

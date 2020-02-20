@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as CartActions from '../../store/modules/cart/actions';
 
 import {
   ProductContainer,
@@ -12,8 +14,10 @@ import {
   DeleteBox,
   DeleteProduct,
   ProductDetail,
+  Decrement,
   DecrementButton,
   InputAmount,
+  Increment,
   IncrementButton,
   ProductTotal,
   ProductFooter,
@@ -23,7 +27,15 @@ import {
   OrderText,
 } from './styles';
 
-function Cart({navigation, cart, dispatch}) {
+function Cart({navigation, cart, removeFromCart, updateAmount}) {
+  function increment(product) {
+    updateAmount(product.id, product.amount + 1);
+  }
+
+  function decrement(product) {
+    updateAmount(product.id, product.amount - 1);
+  }
+
   return (
     <ProductContainer>
       <ProductList>
@@ -35,18 +47,19 @@ function Cart({navigation, cart, dispatch}) {
                 <ProductTitle>{product.title}</ProductTitle>
                 <ProductPrice>{product.priceFormatted}</ProductPrice>
               </ProductInfo>
-              <DeleteBox
-                onPress={() =>
-                  dispatch({type: 'REMOVE_FROM_CART', id: product.id})
-                }>
+              <DeleteBox onPress={() => removeFromCart(product.id)}>
                 <DeleteProduct />
               </DeleteBox>
             </ProductHeader>
 
             <ProductDetail>
-              <DecrementButton />
+              <Decrement onPress={() => decrement(product)}>
+                <DecrementButton />
+              </Decrement>
               <InputAmount value={String(product.amount)} />
-              <IncrementButton />
+              <Increment onPress={() => increment(product)}>
+                <IncrementButton />
+              </Increment>
               <ProductTotal>555</ProductTotal>
             </ProductDetail>
           </>
@@ -67,4 +80,7 @@ const mapStateToProps = state => ({
   cart: state.cart,
 });
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
