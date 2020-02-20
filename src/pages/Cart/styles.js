@@ -66,6 +66,7 @@ export const InputAmount = styled.TextInput.attrs({
   height: 30px;
   border-radius: 4px;
   min-width: 52px;
+  padding: 5px;
 `;
 export const IncrementButton = styled.Image.attrs({
   source: addCircle,

@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import {
   ProductContainer,
@@ -21,31 +22,32 @@ import {
   OrderText,
 } from './styles';
 
-export default function Cart({navigation}) {
+function Cart({navigation, cart}) {
   return (
     <ProductContainer>
       <ProductList>
-        <ProductHeader>
-          <ProductImage />
-          <ProductInfo>
-            <ProductTitle>Tenis</ProductTitle>
-            <ProductPrice>189</ProductPrice>
-          </ProductInfo>
+        {cart.map(product => (
+          <>
+            <ProductHeader key={product.id}>
+              <ProductImage source={{uri: product.image}} />
+              <ProductInfo>
+                <ProductTitle>{product.title}</ProductTitle>
+                <ProductPrice>{product.priceFormatted}</ProductPrice>
+              </ProductInfo>
+              <DeleteProduct />
+            </ProductHeader>
 
-          <DeleteProduct />
-        </ProductHeader>
-
-        <ProductDetail>
-          <DecrementButton />
-          <InputAmount />
-          <IncrementButton />
-          <ProductTotal>555</ProductTotal>
-        </ProductDetail>
-
+            <ProductDetail>
+              <DecrementButton />
+              <InputAmount value={String(product.amount)} />
+              <IncrementButton />
+              <ProductTotal>555</ProductTotal>
+            </ProductDetail>
+          </>
+        ))}
         <ProductFooter>
           <TotalText>TOTAL</TotalText>
           <TotalValue>555</TotalValue>
-
           <OrderButton>
             <OrderText>FINALIZAR PEDIDO</OrderText>
           </OrderButton>
@@ -54,3 +56,9 @@ export default function Cart({navigation}) {
     </ProductContainer>
   );
 }
+
+const mapStateToProps = state => ({
+  cart: state.cart,
+});
+
+export default connect(mapStateToProps)(Cart);

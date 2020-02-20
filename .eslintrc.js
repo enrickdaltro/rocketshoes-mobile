@@ -31,5 +31,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'lines-between-class-members': 'off',
     'no-console': ['error', {allow: ['tron']}],
+    'no-param-reassign': 'off',
   },
 };
