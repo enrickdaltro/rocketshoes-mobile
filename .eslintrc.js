@@ -30,5 +30,6 @@ module.exports = {
     'react/static-property-placement': 'off',
     'react/jsx-props-no-spreading': 'off',
     'lines-between-class-members': 'off',
+    'no-console': ['error', {allow: ['tron']}],
   },
 };

@@ -4,11 +4,11 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import {Provider} from 'react-redux';
 
+import './config/ReactotronConfig';
+
 import store from './store/index';
 
 // import {View} from 'react-native';
-
-// import './config/ReactotronConfig';
 
 import Routes from './routes';
 
