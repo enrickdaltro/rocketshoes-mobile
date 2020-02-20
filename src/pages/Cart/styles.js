@@ -102,7 +102,7 @@ export const TotalText = styled.Text`
 export const TotalValue = styled.Text`
   text-align: center;
   margin-top: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   font-size: 32px;
   font-weight: bold;
 `;

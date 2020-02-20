@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as CartActions from '../../store/modules/cart/actions';
+import {formatPrice} from '../../util/format';
 
 import {
   ProductContainer,
@@ -27,7 +28,7 @@ import {
   OrderText,
 } from './styles';
 
-function Cart({navigation, cart, removeFromCart, updateAmount}) {
+function Cart({navigation, cart, total, removeFromCart, updateAmount}) {
   function increment(product) {
     updateAmount(product.id, product.amount + 1);
   }
@@ -60,13 +61,13 @@ function Cart({navigation, cart, removeFromCart, updateAmount}) {
               <Increment onPress={() => increment(product)}>
                 <IncrementButton />
               </Increment>
-              <ProductTotal>555</ProductTotal>
+              <ProductTotal>{product.subtotal}</ProductTotal>
             </ProductDetail>
           </>
         ))}
         <ProductFooter>
           <TotalText>TOTAL</TotalText>
-          <TotalValue>555</TotalValue>
+          <TotalValue>{total}</TotalValue>
           <OrderButton>
             <OrderText>FINALIZAR PEDIDO</OrderText>
           </OrderButton>
@@ -77,7 +78,15 @@ function Cart({navigation, cart, removeFromCart, updateAmount}) {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart,
+  cart: state.cart.map(product => ({
+    ...product,
+    subtotal: formatPrice(product.price * product.amount),
+  })),
+  total: formatPrice(
+    state.cart.reduce((total, product) => {
+      return total + product.price * product.amount;
+    }, 0),
+  ),
 });
 
 const mapDispatchToProps = dispatch =>
